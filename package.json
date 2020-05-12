@@ -1,0 +1,39 @@
+{
+  "name": "flipitapi",
+  "description": "Api to get flip it info",
+  "main": "index.js",
+  "version": "1.0.0",
+  "type": "module",
+  "author": {
+    "email": "bnarasimha21@gmail.com",
+    "name": "Narasimha Badrinath",
+    "url": "http://narasimhabadrinath.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://bnarasimha21@bitbucket.org/codesnippers/codesnipapi.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2"
+  },
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
+    "express": "^4.15.3",
+    "gulp": "^3.9.1",
+    "gulp-zip": "^4.0.0",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.8",
+    "morgan": "^1.8.2",
+    "nodemon": "^2.0.3"
+  }
+}
