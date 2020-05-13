@@ -35,15 +35,36 @@ const ScoreSchema = Schema ({
     clicks : Number,
     topic: String
 });
-var Scores = mongoose.model('scores', ScoreSchema);
+var Score = mongoose.model('scores', ScoreSchema);
 
 
-app.get('/api/getScores', function(req, res){
-  Scores.find(function(err, scores){
+app.get('/api/getScores/:topic', function(req, res){
+  var topic = req.params.topic;
+
+  Score.find({'topic': topic},function(err, scores){
       if(err){
           console.log(err);
       }
       res.json(scores);
+  })
+  .sort({totalseconds: 'ascending'})
+  .sort({clicks: 'ascending'})
+  .limit(5)
+});
+
+app.post('/api/addScore', function(req, res){
+  var score = new Score({
+    name : req.body.name,
+    minutes : req.body.minutes,
+    seconds : req.body.seconds,
+    totalseconds : req.body.totalseconds,
+    clicks : req.body.clicks,
+    topic : req.body.topic
+  });
+
+  Score.create(score, function(err, addedScore){
+    if(err) console.log(err);
+    res.json(addedScore);
   })
 });
 
