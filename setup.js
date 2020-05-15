@@ -47,8 +47,8 @@ app.get('/api/getScores/:topic', function(req, res){
       }
       res.json(scores);
   })
-  .sort({totalseconds: 'ascending'})
   .sort({clicks: 'ascending'})
+  .sort({totalseconds: 'ascending'})
   .limit(5)
 });
 
