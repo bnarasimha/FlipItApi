@@ -49,14 +49,12 @@ app.get('/api/getScores/:topic', function(req, res){
   })
   .sort({clicks: 'ascending'})
   .sort({totalseconds: 'ascending'})
-  .limit(5)
+  .limit(8)
 });
 
 app.post('/api/addScore', function(req, res){
   var score = new Score({
     name : req.body.name,
-    minutes : req.body.minutes,
-    seconds : req.body.seconds,
     totalseconds : req.body.totalseconds,
     clicks : req.body.clicks,
     topic : req.body.topic
