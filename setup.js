@@ -57,7 +57,8 @@ app.post('/api/addScore', function(req, res){
     name : req.body.name,
     totalseconds : req.body.totalseconds,
     clicks : req.body.clicks,
-    topic : req.body.topic
+    topic : req.body.topic,
+    createdDate : req.body.createdDate
   });
 
   Score.create(score, function(err, addedScore){
