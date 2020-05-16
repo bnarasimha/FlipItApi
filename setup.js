@@ -49,7 +49,7 @@ app.get('/api/getScores/:topic', function(req, res){
   })
   .sort({clicks: 'ascending'})
   .sort({totalseconds: 'ascending'})
-  .limit(8)
+  .limit(10)
 });
 
 app.post('/api/addScore', function(req, res){
