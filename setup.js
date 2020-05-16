@@ -29,11 +29,10 @@ app.use(methodOverride());
 
 const ScoreSchema = Schema ({
     name : String,
-    minutes : Number,
-    seconds : Number,
     totalseconds: Number,
     clicks : Number,
-    topic: String
+    topic: String,
+    createdDate : Date
 });
 var Score = mongoose.model('scores', ScoreSchema);
 
