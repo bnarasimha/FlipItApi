@@ -51,6 +51,33 @@ app.get('/api/getScores/:topic', function(req, res){
   .limit(10)
 });
 
+app.get('/api/totalGames', function(req, res){
+  Score.find(function(err, totalGames){
+      if(err){
+          console.log(err);
+      }
+      res.json(totalGames.length);
+  })
+});
+
+app.get('/api/players', function(req, res){
+  Score.distinct("name", function(err, players){
+      if(err){
+          console.log(err);
+      }
+      res.json(players);
+  })
+});
+
+app.get('/api/playersCount', function(req, res){
+  Score.distinct("name", function(err, distinctPlayers){
+      if(err){
+          console.log(err);
+      }
+      res.json(distinctPlayers.length);
+  })
+});
+
 app.post('/api/addScore', function(req, res){
   var score = new Score({
     name : req.body.name,
