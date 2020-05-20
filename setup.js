@@ -60,6 +60,17 @@ app.get('/api/totalGames', function(req, res){
   })
 });
 
+app.get('/api/recentGames', function(req, res){
+  Score.find(function(err, totalGames){
+      if(err){
+          console.log(err);
+      }
+      res.json(totalGames);
+  })
+  .sort({createdDate: 'descending'})
+  .limit(20)
+});
+
 app.get('/api/players', function(req, res){
   Score.distinct("name", function(err, players){
       if(err){
