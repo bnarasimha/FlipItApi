@@ -48,6 +48,7 @@ app.get('/api/getScores/:topic', function(req, res){
       var finalscores = [];
       scores.forEach(element => {
         var fscore = {
+          _id : element._id,
           name : element.name,
           totalseconds : element.totalseconds,
           clicks : element.clicks,
@@ -57,10 +58,10 @@ app.get('/api/getScores/:topic', function(req, res){
         }
         finalscores.push(fscore);
       })
-      finalscores.sort(function(a, b){return a.secondsplusclicks - b.secondsplusclicks})
+      finalscores.sort(function(a, b){return a.secondsplusclicks - b.secondsplusclicks});
+      finalscores = finalscores.slice(0,10);
       res.json(finalscores);
   })
-  .limit(10)
 });
 
 app.get('/api/totalGames', function(req, res){
