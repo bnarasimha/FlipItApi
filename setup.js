@@ -44,10 +44,22 @@ app.get('/api/getScores/:topic', function(req, res){
       if(err){
           console.log(err);
       }
-      res.json(scores);
+
+      var finalscores = [];
+      scores.forEach(element => {
+        var fscore = {
+          name : element.name,
+          totalseconds : element.totalseconds,
+          clicks : element.clicks,
+          secondsplusclicks : (element.totalseconds + element.clicks) / 2,
+          topic : element.topic,
+          createdDate : element.createdDate
+        }
+        finalscores.push(fscore);
+      })
+      finalscores.sort(function(a, b){return a.secondsplusclicks - b.secondsplusclicks})
+      res.json(finalscores);
   })
-  .sort({clicks: 'ascending'})
-  .sort({totalseconds: 'ascending'})
   .limit(10)
 });
 
