@@ -1,4 +1,4 @@
-var app  = require('./setup.js');
+import { app } from './setup.js';
 
 const port = process.env.PORT || 4000
 app.listen(port);

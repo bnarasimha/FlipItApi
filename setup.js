@@ -1,29 +1,37 @@
+import express from 'express';
+import cors from "cors";
+import morgan from "morgan";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-// Setup
-var express = require('express');
-var app = express();
-var cors = require('cors');
-var morgan = require('morgan');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-const Schema = mongoose.Schema;
+import pkg1 from 'mongoose';
+const { Schema: _Schema, connect, model } = pkg1;
+
+import pkg from 'body-parser';
+const { urlencoded, json: jayson } = pkg;
+
+import methodOverride from "method-override";
+
+const Schema = _Schema;
 
 var MongoUri = "mongodb://bnarasimha21:1nvin$ible@cluster0-shard-00-00-shwiy.mongodb.net:27017/FlipIt?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
-mongoose.Promise = global.Promise;
-mongoose.connect(MongoUri, {
+connect(MongoUri, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE,
-  useMongoClient: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
+
+var app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Configuration
 app.use(cors());
 app.use(express.static(__dirname));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({'extended':'true'}));
-app.use(bodyParser.json());
-app.use(bodyParser.json({type: 'application/vhd.api+json'}));
+app.use(urlencoded({'extended':'true'}));
+app.use(jayson());
+app.use(jayson({type: 'application/vhd.api+json'}));
 app.use(methodOverride());
 
 
@@ -34,7 +42,7 @@ const ScoreSchema = Schema ({
     topic: String,
     createdDate : Date
 });
-var Score = mongoose.model('scores', ScoreSchema);
+var Score = model('scores', ScoreSchema);
 
 
 app.get('/api/getScores/:topic', function(req, res){
@@ -117,4 +125,4 @@ app.post('/api/addScore', function(req, res){
   })
 });
 
-module.exports = app;
+export { app };
