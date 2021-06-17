@@ -17,7 +17,7 @@ const Schema = _Schema;
 var MongoUri = "mongodb://bnarasimha21:1nvin$ible@cluster0-shard-00-00-shwiy.mongodb.net:27017/FlipIt?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
 connect(MongoUri, {
   keepAlive: true,
-  reconnectTries: Number.MAX_VALUE,
+  // reconnectTries: Number.MAX_VALUE,
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
