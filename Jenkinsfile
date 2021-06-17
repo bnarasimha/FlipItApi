@@ -3,11 +3,7 @@ pipeline {
 
     stages {
         stage('Build'){
-            'npm install'
+            echo 'Building'
         }
-        // stage('Deploy'){
-        //     'cp . /home/ubuntu/APIs/FlipItApi'
-        //     'pm2 restart FlipIiApi'
-        // }
     }
 }
